@@ -44,6 +44,37 @@ function timer() {
   return clock;
 }
 
+function goal() {
+  setDown(1);
+  setToGo(10);
+}
+
+function resetField() {
+  setDown(1);
+  setToGo(10);
+  setBallOn(0);
+}
+
+function homeTouchdown() {
+  setHomeScore(homeScore + 7);
+  resetField();
+}
+
+function homeFieldGoal() {
+  setHomeScore(homeScore + 3);
+  resetField();
+}
+
+function awayTouchdown() {
+  setAwayScore(awayScore + 3);
+  resetField();
+}
+
+function awayFieldGoal() {
+  setAwayScore(awayScore + 3);
+  resetField();
+}
+
   return (
     <div className="container">
       <section className="scoreboard">
@@ -66,20 +97,19 @@ function timer() {
       <section className="buttons">
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button onClick={() => setHomeScore(homeScore + 7)} className="homeButtons__touchdown">Home Touchdown</button>
-          <button onClick={() => setHomeScore(homeScore + 3)} className="homeButtons__fieldGoal">Home Field Goal</button>
+          <button onClick={() => homeTouchdown()} className="homeButtons__touchdown">Home Touchdown</button>
+          <button onClick={() => homeFieldGoal()} className="homeButtons__fieldGoal">Home Field Goal</button>
           
         </div>
         <div className="awayButtons">
-          <button onClick={() => setAwayScore(awayScore + 7)} className="awayButtons__touchdown">Away Touchdown</button>
-          <button onClick={() => setAwayScore(awayScore + 3)} className="awayButtons__fieldGoal">Away Field Goal</button>
+          <button onClick={() => awayTouchdown()} className="awayButtons__touchdown">Away Touchdown</button>
+          <button onClick={() => awayFieldGoal()} className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
       </section>
       <section className="buttons">
         <button onClick={() => setDown(down + 1)} className="homeButtons__fieldGoal">Pass</button>
-        <button onClick={() => setDown(1)} className="homeButtons__fieldGoal">Reset Down</button>
         <button onClick={() => setToGo(toGo - 1)} className="homeButtons__fieldGoal">Less Yards to First</button>
-        <button onClick={() => setToGo(10)} className="homeButtons__fieldGoal">Reset To Go</button>
+        <button onClick={() => goal()} className="homeButtons__fieldGoal">Goal</button>
         <button onClick={() => setBallOn(ballOn + 5)} className="homeButtons__fieldGoal">Add 5 Yards to Ball</button>
         <button onClick={() => setBallOn(0)} className="homeButtons__fieldGoal">Reset Ball</button>
         <button onClick={() => setQuarter(quarter + 1)} className="homeButtons__fieldGoal">Next Quarter</button>
