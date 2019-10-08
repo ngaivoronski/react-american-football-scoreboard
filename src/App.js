@@ -19,7 +19,13 @@ function App() {
 
 function timer() {
   setTimeout(function() {
-    setTime(time - 1);
+    if (time > 0) {
+      setTime(time - 1);
+    }
+    else {
+      setTime(0);
+    }
+    
   }, 1000);
   var minutes = Math.floor(time/60);
   if (minutes < 10) {
@@ -29,7 +35,12 @@ function timer() {
   if (seconds < 10) {
     seconds = '0'+seconds;
   }
-  var clock = minutes + ":" + seconds;
+  if (seconds > 0 || minutes > 0) {
+    var clock = minutes + ":" + seconds;
+  } else {
+    var clock = 'GAME OVER';
+  }
+  
   return clock;
 }
 
